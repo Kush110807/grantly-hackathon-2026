@@ -21,6 +21,10 @@ GRANTLY turns these steps into a single **decision workspace**:
 
 **Why two gates?** A student may be allowed to apply for a grant but forbidden to accept and retain it alongside an existing tuition award. Treating these as one eligibility badge would mislead the student.
 
+## Start with a worked example
+
+On the discovery page, select **Try a worked example**. This explicit user action sets **Undergraduate Year 1** and **Campus Tuition Waiver**, opens the **Meridian Study Grant**, and shows why applying can be permitted while holding both awards is prohibited. It **does not create an application or overwrite existing plan entries**; any previously saved plan is preserved and reassessed if its context changes.
+
 ## Demo journeys to test
 
 | Scenario | Study context | Expected distinction |

@@ -14,7 +14,7 @@
     "g1:verify": "node scripts/g1-verify.mjs",
     "verify:integrated": "node scripts/integration-check.mjs",
     "test:plan": "node --experimental-strip-types --test src/plan/tests/plan.test.mjs",
-    "test": "npm run verify:integrated && npm run test:plan && node scripts/release-check.mjs",
+    "test": "npm run verify:integrated && npm run test:plan && node --experimental-strip-types --test src/integration/tryExample.test.mjs && node scripts/release-check.mjs",
     "check": "npm run test && npm run build"
   },
   "dependencies": {

@@ -3,6 +3,7 @@ import type { ChangeEvent } from 'react';
 import type { Aid, Command, Field, Id, ListState, Model, Page, Profile, Row, Year } from './shared/contracts';
 import { freshList, freshModel, DEMO_LABEL } from './shared/defaults';
 import { FOCUS, focusId } from './shared/focus';
+import { withWorkedExample, workedExampleList, WORKED_EXAMPLE } from './integration/tryExample';
 import { catalogue, assess, visibleRows, contextKey, applyCommand, read, write, reset, Discover, OpportunityDetail, MyPlan } from './integration/live';
 
 type Notice = { kind:'success'|'warning'|'info'; text:string } | null;
@@ -148,6 +149,25 @@ export default function App() {
     setProfileExpanded(true);
     focusId(FOCUS.profileEditor);
   };
+  const runWorkedExample=()=>{
+    // A deliberate demonstration choice: never auto-set the profile or clear saved plans.
+    const next=withWorkedExample(model);
+    const opportunity=catalogue.find(item=>item.id===WORKED_EXAMPLE.opportunityId);
+    const outcome=opportunity ? assess(opportunity,next.profile) : null;
+    const message=outcome
+      ? `Worked example: Meridian Study Grant, Year 1 and Campus Tuition Waiver. Application ${outcome.application.outcome}; holding ${outcome.holding.outcome}. Existing saved plans are retained and may require review.`
+      : 'Worked example selected. Existing saved plans remain unchanged.';
+    commitModel(next,message);
+    const previousScroll=window.scrollY;
+    closeProfilePanels();
+    setList(workedExampleList());
+    setOrigin('discover');
+    setDetailId(wide?null:WORKED_EXAMPLE.opportunityId);
+    setPage(wide?'discover':'detail');
+    lastReturnRef.current={id:FOCUS.results,scroll:previousScroll};
+    if(!wide)window.scrollTo({top:0});
+    focusId(FOCUS.detailHeading);
+  };
   const detailProps=(row:Row)=>({
     row, profile:model.profile, onCommand, onProfile:openProfileEditor,
     onCompare:compare,onExplore:explore,onPlan:showPlan,onBack:backToOrigin
@@ -224,6 +244,11 @@ export default function App() {
         <div className="g-field"><label htmlFor="g-profile-aid">Existing aid</label><select id="g-profile-aid" value={model.profile.aid} onChange={(e:ChangeEvent<HTMLSelectElement>)=>updateProfile({aid:e.target.value as Aid})}>
           <option value="none">None</option><option value="CW">Campus Tuition Waiver</option><option value="FT">Founders Tuition Award</option>
         </select></div></div>
+        {page==='discover'&&<button type="button" className="g-example-trigger" onClick={runWorkedExample}
+          aria-label="Try worked example: Meridian Study Grant, Year 1 with Campus Tuition Waiver. Saves this study context and keeps your existing plan.">
+          <span>Try a worked example <span aria-hidden="true">↗</span></span>
+          <small>Meridian · Year 1 · Tuition Waiver</small>
+        </button>}
       </section>
       <div id="g-live-assessment" className="g-sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</div>
       {page==='plan'&&<MyPlan rows={savedRows} profile={model.profile} onCommand={onCommand} onOpen={id=>openRow(id,'plan')} onDiscover={()=>goDiscover(true)} onReset={resetDemo}/>}
