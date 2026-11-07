@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GRANTLY icon">
+  <rect width="64" height="64" rx="12" fill="#10273b"/>
+  <path d="M42 23.5C39.7 20.8 36.1 19 31.8 19 23.9 19 18 25.1 18 33.1c0 8.3 6.2 14 14.1 14 4.1 0 7.2-1.1 9.5-2.8V35H32v-6h16v20.3C44 52.2 38.8 54 31.5 54 19.8 54 11 45 11 33.2 11 21.5 19.8 12 31.6 12c7.9 0 13.8 2.9 17.8 7.8z" fill="#f5f2ea"/>
+  <rect x="45" y="45" width="8" height="8" fill="#2851c7"/>
+</svg>
