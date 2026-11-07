@@ -1,0 +1,1 @@
+Static HTML visual specimens generated from integrated G2 class structure and representative fictional opportunity data. These files are NOT the functional React application and must never be used as browser acceptance evidence. Use npm commands on src/ for actual app tests.

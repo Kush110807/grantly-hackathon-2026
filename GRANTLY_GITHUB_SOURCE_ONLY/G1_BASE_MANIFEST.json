@@ -1,0 +1,21 @@
+{
+  "id": "GRANTLY-A-G1.0",
+  "status": "foundation scaffold; domain/discovery/plan awaiting owners",
+  "artifact": "GRANTLY_BASE_G1.zip",
+  "handoff_kind": "approved planning only",
+  "source_freeze": "03_SHARED_CONTRACTS.md",
+  "owners": {
+    "A": "everything except B/C/D",
+    "B": "src/domain/**",
+    "C": "src/discovery/**",
+    "D": "src/plan/**"
+  },
+  "development_preview": "/preview.html",
+  "production_html": [
+    "index.html"
+  ],
+  "fixtures_in_production": false,
+  "base_contract_revision": "G1",
+  "pending_integrated_revision": "G2 or A-integrated-r1",
+  "focus_doc": "src/integration/FOCUS_AND_TRANSFER.md"
+}

@@ -1,0 +1,31 @@
+{
+  "base": "GRANTLY-A-G2-r1",
+  "revision": "GRANTLY-A-G2-VISUAL-r2",
+  "changed_existing_paths": [
+    "src/App.tsx",
+    "src/main.tsx"
+  ],
+  "added_paths": [
+    "CHAT_C_VISUAL_REFINEMENT_REQUEST.md",
+    "README_VISUAL_r2.md",
+    "VISUAL_ACCEPTANCE_CHECKLIST.md",
+    "CHAT_D_VISUAL_REFINEMENT_REQUEST.md",
+    "EXPERIENCE_REFINEMENT_RETURN.md",
+    "design_reference/Mobile_390x844_STATIC_SPECIMEN.png",
+    "design_reference/desktop_specimen.html",
+    "design_reference/mobile_specimen.html",
+    "design_reference/Desktop_1440x900_STATIC_SPECIMEN.png",
+    "design_reference/README.md",
+    "src/styles/experience.css"
+  ],
+  "removed_paths": [],
+  "tests": {
+    "domain_oracle": "PASS 236 assertions",
+    "cross_lane_static": "PASS 35 assertions",
+    "plan_model_storage": "PASS 13 tests",
+    "tsx_syntax": "PASS",
+    "actual_npm_typecheck": "BLOCKED registry no cache",
+    "actual_production_build": "UNRUN",
+    "dynamic_integrated_browser": "UNRUN"
+  }
+}
