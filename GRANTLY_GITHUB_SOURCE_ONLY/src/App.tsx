@@ -145,7 +145,7 @@ export default function App() {
   const detailVisible=(page==='detail'||(page==='discover'&&wide));
   const pageTitle=page==='plan'?'My plan':page==='detail'?'Opportunity details':'Discover scholarships';
 
-  return <div className="g-app">
+  return <div className={`g-app g-page-${page}`}>
     <a className="g-skip" href="#g-main">Skip to main content</a>
     <header className="g-site-header"><div className="g-header-inner">
       <div className="g-brand" aria-label="GRANTLY home"><span className="g-brand-emblem" aria-hidden="true">G</span><span className="g-brand-name">GRANTLY<span className="g-brand-dot">.</span></span></div>
@@ -157,7 +157,7 @@ export default function App() {
     </div></header>
     <main id="g-main" className="g-workspace" tabIndex={-1}>
       <div className="g-intro">
-        <div className="g-intro-copy"><div className="g-eyebrow">FINANCIAL AID · DECISION WORKSPACE</div><h1>{pageTitle}</h1>
+        <div className="g-intro-copy"><div className="g-eyebrow">THE SCHOLARSHIP DECISION DESK / ISSUE 01</div><h1>{page==='discover'?<>Find funding. <em>Know the terms.</em></>:pageTitle}</h1>
           <p className="g-intro-description">{page==='plan'
             ? 'Your saved intentions, outstanding questions and current award conditions — in one place.'
             : page==='detail'
