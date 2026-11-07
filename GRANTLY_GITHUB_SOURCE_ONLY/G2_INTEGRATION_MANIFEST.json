@@ -1,12 +1,12 @@
 {
-  "revision": "GRANTLY-A-G2-r4-UX-X02",
-  "parent_revision": "GRANTLY-A-G2-r3",
+  "revision": "GRANTLY-A-G2-r5-UX-X02",
+  "parent_revision": "GRANTLY-A-G2-r4-UX-X02",
   "baseline": "GRANTLY-A-G1.0",
   "parent_archive_sha256": "500128c1b86712231987bb1e14a974021a64e153fc3e749d839bc994f8c694d9",
   "design_authorisation": "GRANTLY_X02_A_VISUAL_AUTHORIZATION.md",
   "previous_qa": "E-G2-r3 HOLD for browser, security and deploy; not transferable to r4",
-  "verification": "source integrity and local oracle/model/static checks PASS; actual r4 React build/browser E QA UNRUN",
-  "release_status": "INTEGRATION CANDIDATE — NOT RELEASE ACCEPTED",
+  "verification": "Codex reports 54/54 specified viewport fold checks, 30/30 contrast checks, 11 axe scans PASS, TypeScript/build/domain/planning checks PASS. Live deployed desktop smoke checks passed independently; mobile and native screen reader acceptance remain outside independent live smoke.",
+  "release_status": "PUBLIC DEPLOYMENT CONFIRMED FOR REDESIGNED EXPERIENCE; FORMAL ORGANISER SUBMISSION NOT YET VERIFIED",
   "source_files": {
     ".gitignore": "6c12cbe2357b4b2397df3e8e170aeebe414079a3538a322613ebb05b449c0086",
     "A_G2_INTEGRATION_RETURN.md": "c8cb2a05b97feddd194952d6304312c7c21c100d3c40229e325171a68b9f220e",
@@ -39,10 +39,10 @@
     "scripts/g1-verify.mjs": "1d39cf1f7179f89d32542bdab8edcd018a1947f51a335abefd8d14ef11d3831f",
     "scripts/integration-check.mjs": "a6f448eaf28942e9210ff892a7fc360bd8847d9eccef48d7bf930717da044272",
     "scripts/release-check.mjs": "2808e1de4f83bd5c67516674d491c8fb22cf3ed3d733c0a2d66e96c5be16c50d",
-    "src/App.tsx": "f748c26141388f4ae9701dc8e09fbbde327afac279be6fbb3e4f5626a0da7c16",
+    "src/App.tsx": "e1d6f0390311aef8cfce0f6d4fdb54fe622bc04de0ba202c0492fca8710d8416",
     "src/discovery/INTEGRATION.md": "aa79097436d61e6e84be1f64e91776552521b5ddb1ed741994a9b63cabca5f66",
     "src/discovery/UX_X02_INTEGRATION.md": "cb7a5817a0d6921a890a26fae39ba375a9199401141e091420c55fa41c23c67a",
-    "src/discovery/discovery.css": "1e95f604f54f90f9f624b878229a76eb3aba9192f9d5d7bf5bf3b91575ca124e",
+    "src/discovery/discovery.css": "929ec3185ff4353d806c3a83f1640ca6db244198cc3a5e066d36d2c14a13408b",
     "src/discovery/index.tsx": "a4e607ec0e8d3578631cb99ccc61c8003cfb2257b62ef99cc7576827496bf95a",
     "src/domain/index.ts": "63c4f31d8454d4f591c26df8fd34c4d06764abad8da0ab145a9a37f0b062a622",
     "src/domain/oracle.check.ts": "fcb1c89d93a3301d4f170ee794c02419630c4c2519ebdcaa85c2410d536784d8",
@@ -62,9 +62,10 @@
     "src/shared/contracts.ts": "113a3c7b6ae3fd2d86937d7bfc4244ef4e32b214f0e79563da73ca5bacc4a46e",
     "src/shared/defaults.ts": "b7d09764fce4e7b2b212aae4225a5e0e242da4043dca1c30ad94ff25ae1cb023",
     "src/shared/focus.ts": "6c0f3c632e5e263402cb7e42dada7351aeb4668b7dfa363786cda088d65c3814",
-    "src/styles/experience.css": "847c95cd2cf831ea4a2258c445ab7f4db824ad668c10d2d4f6fd64b2d0004fe0",
+    "src/styles/experience.css": "7c1aa3c5a804a90f1a817fa09bc022c5f358627034a56c369e837aa42d2a408d",
     "src/styles/global.css": "f31db553d752b5bc43f3f9c0b654755a3c5a063250a4f3a833d793c3461c0224",
     "tsconfig.json": "cf95658a4033b93b0884a1b3a9cb94132ba50bbfc3ded7a125d48de30ab630c8",
     "vite.config.ts": "f740eccf673ead742708e9e3a7796ae6c5dd6f9bd7f4ba499d400b07616953c7"
-  }
+  },
+  "correction_commit": "a46c237569c8ed75f06bdd460e2a1b76854c9733"
 }
