@@ -41,6 +41,8 @@ export default function App() {
   const lastReturnRef=useRef<{id:string;scroll:number}|null>(null);
   const wide=useWide();
   const [profileExpanded,setProfileExpanded]=useState(false);
+  const storageDetailsRef=useRef<HTMLDetailsElement>(null);
+  const profileToggleRef=useRef<HTMLButtonElement>(null);
 
   const rows=useMemo<Row[]>(()=>catalogue.map(opportunity=>{
     const assessment=assess(opportunity,model.profile);
@@ -88,12 +90,18 @@ export default function App() {
       ? next.selected : view[0]?.opportunity.id ?? null;
     setList({...next,selected:nextSelected});
   };
+  const closeProfilePanels=()=>{
+    setProfileExpanded(false);
+    if(storageDetailsRef.current)storageDetailsRef.current.open=false;
+  };
   const goDiscover=(focusResults=false)=>{
+    closeProfilePanels();
     setPage('discover');setDetailId(null);
     if(focusResults) focusId(FOCUS.results);
   };
   const openRow=(id:Id, from:Origin)=>{
     if(!ID_SET.has(id)||!rows.some(r=>r.opportunity.id===id))return;
+    closeProfilePanels();
     setOrigin(from);setDetailId(id);
     lastReturnRef.current={id:from==='plan'?FOCUS.planOpen(id):FOCUS.opportunityRow(id),scroll:window.scrollY};
     if(from==='discover')setList(s=>({...s,selected:id}));
@@ -101,6 +109,7 @@ export default function App() {
     focusId(FOCUS.detailHeading);
   };
   const backToOrigin=()=>{
+    closeProfilePanels();
     setPage(origin==='plan'?'plan':'discover');setDetailId(null);
     const target=lastReturnRef.current;
     if(target){
@@ -133,8 +142,9 @@ export default function App() {
     onList(fresh);setPage('discover');setDetailId(null);focusId(FOCUS.results);
   };
   const compare=()=>{setPage('discover');setDetailId(null);focusId(FOCUS.results);};
-  const showPlan=()=>{setPage('plan');setDetailId(null);focusId('g-plan-heading');};
+  const showPlan=()=>{closeProfilePanels();setPage('plan');setDetailId(null);focusId('g-plan-heading');};
   const openProfileEditor=()=>{
+    if(storageDetailsRef.current)storageDetailsRef.current.open=false;
     setProfileExpanded(true);
     focusId(FOCUS.profileEditor);
   };
@@ -144,6 +154,14 @@ export default function App() {
   });
   const detailVisible=(page==='detail'||(page==='discover'&&wide));
   const pageTitle=page==='plan'?'My plan':page==='detail'?'Opportunity details':'Discover scholarships';
+  // Presentation only: the complete I/O result remains inspectable below.
+  const storageSummary=!notice?'Device storage · no edits in this tab.'
+    :notice.kind==='success'?'Saved on this device.'
+    :notice.kind==='warning'?notice.text.includes('Couldn’t clear')?'Reset failed · saved data kept.'
+      :locked?'Storage locked · tab only. Reset before saving.'
+      :'Not saved · edits stay in this tab.'
+    :notice.text.startsWith('GRANTLY demo reset')?'Demo reset · no defaults saved.'
+    :'No change was made.';
 
   return <div className={`g-app g-page-${page}`}>
     <a className="g-skip" href="#g-main">Skip to main content</a>
@@ -171,12 +189,31 @@ export default function App() {
         </aside>}
         <span className="g-demo-mobile">{DEMO_LABEL}</span>
       </div>
-      <section id={FOCUS.profileEditor} tabIndex={-1} className={`g-profile-editor g-focus-target ${profileExpanded?'g-profile-expanded':''}`} aria-label="Study details and existing aid">
+      <section id={FOCUS.profileEditor} tabIndex={-1} className={`g-profile-editor g-focus-target ${profileExpanded?'g-profile-expanded':''}`} aria-label="Study details and existing aid"
+        onBlur={event=>{if(event.relatedTarget&&!event.currentTarget.contains(event.relatedTarget))closeProfilePanels();}}
+        onKeyDown={event=>{
+          if(event.key==='Escape'){
+            if(storageDetailsRef.current?.open){storageDetailsRef.current.open=false;storageDetailsRef.current.querySelector('summary')?.focus();}
+            else if(profileExpanded){setProfileExpanded(false);profileToggleRef.current?.focus();}
+          }
+        }}>
         <div className="g-profile-lead">
-          <div><span className="g-profile-overline">LIVE COMPARISON</span><strong>Your study context</strong><p className="g-muted">Change any field to update the listed assessment below.</p>
+          <details ref={storageDetailsRef} className={`g-notice g-${notice?.kind??'idle'} g-storage-details`}
+            onToggle={event=>{if(event.currentTarget.open)setProfileExpanded(false);}}>
+            <summary aria-label={`Study context and storage details. ${storageSummary}`}>
+              <strong>Your study context <span className="g-storage-cue">Details ▾</span></strong>
             <span className="g-profile-summary">{model.profile.year===null?'Year not set':`Year ${model.profile.year}`} · {model.profile.field===null?'Field not set':model.profile.field==='stem'?'STEM':'Other field'} · {model.profile.aid==='none'?'No existing aid':model.profile.aid==='CW'?'Campus Tuition Waiver':'Founders Tuition Award'}</span>
-          </div>
-          <button type="button" className="g-profile-toggle" aria-expanded={profileExpanded} aria-controls="g-profile-fields" onClick={()=>setProfileExpanded(expanded=>!expanded)}>{profileExpanded?'Done':'Edit'} <span aria-hidden="true">{profileExpanded?'−':'+'}</span></button>
+              <span className="g-storage-summary" role="status" aria-live="polite" aria-atomic="true">{storageSummary}</span>
+            </summary>
+            <div className="g-storage-copy"><strong>{notice?.kind==='warning'?'Storage notice':'Device storage'}</strong>
+              <p>{notice?.text??'No edits have been made in this tab. Device saving is reported only after a successful write.'}</p>
+              <p>Change any field to update the listed assessment below.</p>
+            </div>
+          </details>
+          <button ref={profileToggleRef} type="button" className="g-profile-toggle" aria-expanded={profileExpanded} aria-controls="g-profile-fields" onClick={()=>{
+            if(storageDetailsRef.current)storageDetailsRef.current.open=false;
+            setProfileExpanded(expanded=>!expanded);
+          }}>{profileExpanded?'Done':'Edit'} <span aria-hidden="true">{profileExpanded?'−':'+'}</span></button>
         </div>
         <div id="g-profile-fields" className="g-profile-fields"><div className="g-field"><label htmlFor="g-profile-year">Undergraduate year</label><select id="g-profile-year" value={model.profile.year??''} onChange={(e:ChangeEvent<HTMLSelectElement>)=>updateProfile({year:e.target.value===''?null:Number(e.target.value) as Year})}>
           <option value="">Not answered</option><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option>
@@ -188,7 +225,6 @@ export default function App() {
           <option value="none">None</option><option value="CW">Campus Tuition Waiver</option><option value="FT">Founders Tuition Award</option>
         </select></div></div>
       </section>
-      {notice&&<div className={`g-notice g-${notice.kind}`} role="status"><strong>{notice.kind==='success'?'Device storage':notice.kind==='warning'?'Storage notice':'Plan status'}</strong><span>{notice.text}</span></div>}
       <div id="g-live-assessment" className="g-sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</div>
       {page==='plan'&&<MyPlan rows={savedRows} profile={model.profile} onCommand={onCommand} onOpen={id=>openRow(id,'plan')} onDiscover={()=>goDiscover(true)} onReset={resetDemo}/>}
       {page==='discover'&&<div className={`g-discover-layout ${wide?'g-two-col':''}`}>

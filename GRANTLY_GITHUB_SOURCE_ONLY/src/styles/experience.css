@@ -1,4 +1,4 @@
-/* GRANTLY / G2-r4 Decision Desk — A-owned shell only.
+/* GRANTLY / G2-r5 Decision Desk — bounded fold/feedback correction.
    Approved UX-X02 visual variance. C owns .gc-x02, D owns .gd-plan.
    No evaluator, plan, contract, navigation or persistence changes. */
 :root{
@@ -34,7 +34,7 @@ body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased
 .g-intro-aside{display:flex;flex:none;flex-direction:row;align-items:center;gap:18px;border-left:1px solid var(--line);padding:3px 0 3px 26px;min-width:0}
 .g-intro-aside-label{display:none}
 .g-intro-aside div{display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:17px;color:var(--muted)}
-.g-intro-aside div span{font-size:11px;font-weight:750;color:#76828c}
+.g-intro-aside div span{font-size:11px;font-weight:750;color:#52616c}
 .g-intro-aside div strong{font-weight:760;color:var(--g-navy)}
 .g-demo-mobile{display:none}
 .g-profile-editor{display:flex;align-items:center;gap:22px;border:1px solid #dedbd1;border-radius:0;background:var(--g-warm);padding:10px 15px;margin:0 0 13px;min-height:73px;box-shadow:none}
@@ -45,7 +45,7 @@ body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased
 .g-profile-summary,.g-profile-toggle{display:none}
 .g-field{min-width:0}
 .g-field label{font-size:11px;font-weight:760;color:#394c59;margin-bottom:3px}
-.g-field select{height:40px;min-height:40px;max-width:100%;border-radius:3px;border:1px solid #bac3c5;background:var(--surface);color:var(--ink);padding:7px 26px 7px 9px;font-size:13px;font-weight:620}
+.g-field select{height:44px;min-height:44px;max-width:100%;border-radius:3px;border:1px solid #52616c;background:var(--surface);color:var(--ink);padding:7px 26px 7px 9px;font-size:13px;font-weight:620}
 .g-field select:hover{border-color:#7a8f9f}
 .g-primary,.g-secondary{border-radius:3px;min-height:44px;font-size:13px;font-weight:730;transition:background .12s ease}
 .g-primary{background:var(--g-navy);color:white;border:1px solid var(--g-navy)}
@@ -71,7 +71,7 @@ body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased
 .g-app .gd-context{background:#f0f2f0;border-left:3px solid var(--g-blue);border-radius:0;padding:12px 15px}
 .g-app .gd-record{border-bottom-color:var(--line)}
 .g-app .gd-benefit strong{color:var(--g-navy);font-weight:800}
-.g-app .gd-field select{border:1px solid #aeb9bd;border-radius:3px;background:var(--surface)}
+.g-app .gd-field select{border:1px solid #52616c;border-radius:3px;background:var(--surface)}
 .g-app .gd-question,.g-app .gd-review{background:#fbf3df;border-radius:0;border-left:3px solid var(--g-pending);padding:12px 14px}
 @media(max-width:1100px) and (min-width:900px){
  .g-intro-aside{display:none}
@@ -96,7 +96,7 @@ body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased
  .g-profile-lead{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}
  .g-profile-lead strong{font-size:13px;margin:2px 0}
  .g-profile-summary{display:block;font-size:11.5px;line-height:16px;color:var(--muted);max-width:57ch;margin-top:3px}
- .g-profile-toggle{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:44px;min-width:64px;padding:7px 10px;flex:none;background:var(--surface);border:1px solid #96a5af;border-radius:3px;font-size:12px;font-weight:760;color:var(--g-navy)}
+ .g-profile-toggle{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:44px;min-width:64px;padding:7px 10px;flex:none;background:var(--surface);border:1px solid #52616c;border-radius:3px;font-size:12px;font-weight:760;color:var(--g-navy)}
  .g-profile-fields{display:none}
  .g-profile-editor.g-profile-expanded .g-profile-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:11px;padding-top:11px;border-top:1px solid var(--line)}
  .g-discover-layout{border:0;background:transparent;box-shadow:none;overflow:visible;min-height:0}
@@ -115,7 +115,7 @@ body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased
  .g-profile-summary{font-size:10.5px;line-height:15px}
  .g-profile-editor.g-profile-expanded .g-profile-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
  .g-profile-editor.g-profile-expanded .g-field:last-child{grid-column:1/-1}
- .g-field select{min-height:42px;height:42px;font-size:12px}
+ .g-field select{min-height:44px;height:44px;font-size:12px}
  .g-reading-single{padding:9px 11px 19px}
  .g-app .gd-plan{padding:17px 12px}
 }
@@ -127,3 +127,24 @@ body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased
  .g-page-detail .g-reading-single{padding-top:8px}
 }
 @media(prefers-reduced-motion:reduce){.g-primary,.g-secondary{transition:none!important}}
+/* The profile reserves the same feedback space before and after I/O. Full
+   messages use a native disclosure, never a fixed toast over the next action. */
+.g-profile-editor{position:relative;z-index:2}
+.g-profile-lead .g-storage-details{min-width:0;flex:1;display:block;border:0;border-radius:0;background:none;padding:0;margin:0;font-size:11px;line-height:15px}
+.g-storage-details > summary{min-height:44px;list-style:none;cursor:pointer}
+.g-storage-details > summary::-webkit-details-marker{display:none}
+.g-storage-details .g-storage-cue{font-size:10px;font-weight:650;color:var(--g-blue);white-space:nowrap;margin-left:5px;text-decoration:underline}
+.g-storage-summary{display:block;min-height:30px;line-height:15px;color:var(--muted);padding:1px 0 0;overflow-wrap:anywhere}
+.g-success .g-storage-summary{color:var(--g-success)}
+.g-warning .g-storage-summary{color:var(--g-pending);font-weight:750}
+.g-storage-copy{position:absolute;top:calc(100% + 3px);left:-1px;right:-1px;padding:12px 14px;border:1px solid #52616c;background:var(--surface);box-shadow:var(--g-shadow);z-index:3;color:var(--ink);font-size:13px;line-height:19px}
+.g-profile-lead .g-storage-copy p{display:block;max-width:none;margin:4px 0 0}
+.g-warning .g-storage-copy{background:#fbf3df;border-color:var(--g-pending)}
+.g-topnav button:focus-visible{outline-color:#f2b092;outline-offset:-4px}
+@media(max-width:899px){
+ .g-profile-editor.g-profile-expanded .g-profile-fields{position:absolute;top:calc(100% + 3px);left:-1px;right:-1px;z-index:3;margin:0;padding:12px;background:var(--surface);border:1px solid #52616c;box-shadow:var(--g-shadow)}
+ .g-profile-lead .g-storage-details{max-width:calc(100% - 76px)}
+ .g-profile-summary{min-height:15px}
+ .g-page-detail .g-profile-editor{margin-bottom:6px}
+ .g-page-detail .g-reading-single{padding-top:6px}
+}

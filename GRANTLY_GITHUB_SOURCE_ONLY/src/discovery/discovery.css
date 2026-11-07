@@ -88,7 +88,7 @@
 .g-app .gc-x02 .gc-gate.gc-status-stop{color:var(--gc-stop);border-color:#e6c1b9;border-top-color:var(--gc-stop);background:var(--gc-stopwash)}
 .g-app .gc-x02 .gc-gate.gc-status-wait{color:var(--gc-wait);border-color:#e1d1ad;border-top-color:var(--gc-wait);background:var(--gc-waitwash)}
 .g-app .gc-x02 .gc-gate-header{display:flex;align-items:baseline;gap:8px;min-width:0;color:var(--gc-ink)}
-.g-app .gc-x02 .gc-gate-index{font:normal 20px/1 Georgia,serif;color:#647987}
+.g-app .gc-x02 .gc-gate-index{font:normal 20px/1 Georgia,serif;color:#52616c}
 .g-app .gc-x02 .gc-gate-heading{font-size:10.5px;line-height:16px;font-weight:820;letter-spacing:.02em;flex:1}
 .g-app .gc-x02 .gc-gate-symbol{flex:none;border:1px solid currentColor;border-radius:50%;width:23px;height:23px;display:grid;place-items:center;color:inherit;font-size:15px;font-weight:800}
 .g-app .gc-x02 .gc-gate-outcome{font-size:25px;line-height:30px;margin:9px 0 3px;letter-spacing:-.035em;color:inherit;font-weight:800}
@@ -220,4 +220,26 @@
  .g-app .gc-x02 .gc-decision-context{margin-bottom:5px}
  .g-app .gc-x02 .gc-offer{padding:8px 0}
  .g-app .gc-x02 .gc-academic{padding:7px 0}
+}
+/* r5 / A-authorised C-owned corrections: keep all content and 44px actions;
+   recover whitespace rather than shrinking verdicts or clipping the dossier. */
+.g-app .gc-x02 .gc-gate-outcome{margin-top:6px}
+.g-app .gc-x02 .gc-action-block{margin-top:8px}
+.g-app .gc-x02 .gc-back{min-height:44px}
+.g-app .gc-x02.gc-index :focus-visible{outline-color:#f2b092!important;outline-offset:-3px}
+.g-app .gc-x02.gc-index .gc-search-wrap input:focus-visible,
+.g-app .gc-x02.gc-index .gc-checkbox-label input:focus-visible{outline-offset:3px}
+.g-app .gc-x02.gc-index .gc-result[aria-current='true']:focus-visible{outline-color:#215fe9!important}
+@media(max-width:530px){
+ .g-app .gc-x02 .gc-back{margin-bottom:0}
+ .g-app .gc-x02 .gc-detail-topline{margin-bottom:3px}
+ .g-app .gc-x02 .gc-purpose-detail{margin-bottom:4px}
+ .g-app .gc-x02 .gc-offer{padding-block:4px}
+ .g-app .gc-x02 .gc-academic{padding-block:4px}
+ .g-app .gc-x02 .gc-decision{margin-top:6px}
+ .g-app .gc-x02 .gc-decision-heading{margin-bottom:3px}
+ .g-app .gc-x02 .gc-decision-context{margin-bottom:4px}
+ .g-app .gc-x02 .gc-gate{padding:6px}
+ .g-app .gc-x02 .gc-gate-outcome{margin-top:4px}
+ .g-app .gc-x02 .gc-action-block{margin-top:6px;padding-block:7px}
 }
