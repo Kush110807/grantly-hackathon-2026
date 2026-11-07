@@ -6,7 +6,7 @@
   "design_authorisation": "GRANTLY_X02_A_VISUAL_AUTHORIZATION.md",
   "previous_qa": "E-G2-r3 HOLD for browser, security and deploy; not transferable to r4",
   "verification": "Codex reports 54/54 specified viewport fold checks, 30/30 contrast checks, 11 axe scans PASS, TypeScript/build/domain/planning checks PASS. Live deployed desktop smoke checks passed independently; mobile and native screen reader acceptance remain outside independent live smoke.",
-  "release_status": "PUBLIC FRONTEND MVP DEPLOYED; SOURCE-ROOT AND DOCUMENTATION REMEDIATION READY FOR RE-EVALUATION; ORGANISER SCORE NOT VERIFIED",
+  "release_status": "PUBLIC FRONTEND MVP; ROOT/NPM/CI/METADATA REMEDIATED; ORGANISER RE-EVALUATION PENDING",
   "source_files": {
     ".gitignore": "6c12cbe2357b4b2397df3e8e170aeebe414079a3538a322613ebb05b449c0086",
     "A_G2_INTEGRATION_RETURN.md": "c8cb2a05b97feddd194952d6304312c7c21c100d3c40229e325171a68b9f220e",
@@ -32,7 +32,7 @@
     "design_reference/README.md": "982fb14ba2cb78584697f06f9d4a0543fc4603a8264841554c4490bce979f8b7",
     "design_reference/desktop_specimen.html": "10e33e56c0292f90146f2a98e435753255a7c48d576e544b1ca8ca5158899b2c",
     "design_reference/mobile_specimen.html": "d5186e614c8a151116e734803524d1dcaf582b0510550e38db692a3aaf7d2922",
-    "index.html": "24afc382b193d16200bb88ac5f5c37a043f09f4d25730c3b7d723e83b2977c7f",
+    "index.html": "01643732d56570f5e7d84884f99d5eaa1e3f6321be331b5c799240c8a52d0574",
     "package-lock.json": "6d98e8d122a9450fd7612bd56c0ec5b5dd3002b86d513ff789a90ccbc57137b7",
     "package.json": "8a779acb354fca7498ac7bda6324eec1a292edd4994983bc61c191b354691c0b",
     "preview.html": "dfbdfcfeb2cb19a1499f4bfbcb8cbc2e2e368547101b579c184ff7060424c85a",
@@ -66,7 +66,8 @@
     "src/styles/global.css": "f31db553d752b5bc43f3f9c0b654755a3c5a063250a4f3a833d793c3461c0224",
     "tsconfig.json": "cf95658a4033b93b0884a1b3a9cb94132ba50bbfc3ded7a125d48de30ab630c8",
     "vite.config.ts": "f740eccf673ead742708e9e3a7796ae6c5dd6f9bd7f4ba499d400b07616953c7",
-    ".github/workflows/verify.yml": "7f96cd728dbca773c89adf798fc77dd8e3d0fa55747678063974228184814d45"
+    ".github/workflows/verify.yml": "7f96cd728dbca773c89adf798fc77dd8e3d0fa55747678063974228184814d45",
+    "public/favicon.svg": "3afc5095917d5afde4cfd7d5fe6359c117a4715dcc1c284367f1889f46524861"
   },
   "correction_commit": "a46c237569c8ed75f06bdd460e2a1b76854c9733",
   "repository_root": ".",
