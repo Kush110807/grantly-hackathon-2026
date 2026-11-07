@@ -1,19 +1,21 @@
 {
-  "name": "grantly-g1",
+  "name": "grantly-decision-desk",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "engines": {
     "node": ">=20.19.0"
   },
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && vite build",
-    "preview": "vite preview --host 0.0.0.0",
+    "preview": "vite preview --host 127.0.0.1",
     "g1:verify": "node scripts/g1-verify.mjs",
     "verify:integrated": "node scripts/integration-check.mjs",
-    "test:plan": "node --experimental-strip-types --test src/plan/tests/plan.test.mjs"
+    "test:plan": "node --experimental-strip-types --test src/plan/tests/plan.test.mjs",
+    "test": "npm run verify:integrated && npm run test:plan && node scripts/release-check.mjs",
+    "check": "npm run test && npm run build"
   },
   "dependencies": {
     "react": "19.2.4",
