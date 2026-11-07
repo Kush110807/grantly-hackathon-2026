@@ -157,7 +157,7 @@ export default function App() {
   // Presentation only: the complete I/O result remains inspectable below.
   const storageSummary=!notice?'Device storage · no edits in this tab.'
     :notice.kind==='success'?'Saved on this device.'
-    :notice.kind==='warning'?notice.text.includes('Couldn’t clear')?'Reset failed · saved data kept.'
+    :notice.kind==='warning'?notice.text.includes('Couldn’t clear')?'Reset failed · tab state kept.'
       :locked?'Storage locked · tab only. Reset before saving.'
       :'Not saved · edits stay in this tab.'
     :notice.text.startsWith('GRANTLY demo reset')?'Demo reset · no defaults saved.'
