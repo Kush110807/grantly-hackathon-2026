@@ -1,0 +1,28 @@
+name: GRANTLY frontend verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Clean install
+        run: npm ci
+      - name: Domain, model and release regression tests
+        run: npm test
+      - name: Dependency-backed typecheck and Vite production build
+        run: npm run build
