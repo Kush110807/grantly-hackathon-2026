@@ -1,12 +1,12 @@
 {
-  "revision": "GRANTLY-A-G2-r5-UX-X02",
-  "parent_revision": "GRANTLY-A-G2-r4-UX-X02",
+  "revision": "GRANTLY-A-G2-r5.1-EVALUATION-ROOT",
+  "parent_revision": "GRANTLY-A-G2-r5-UX-X02",
   "baseline": "GRANTLY-A-G1.0",
   "parent_archive_sha256": "500128c1b86712231987bb1e14a974021a64e153fc3e749d839bc994f8c694d9",
   "design_authorisation": "GRANTLY_X02_A_VISUAL_AUTHORIZATION.md",
   "previous_qa": "E-G2-r3 HOLD for browser, security and deploy; not transferable to r4",
   "verification": "Codex reports 54/54 specified viewport fold checks, 30/30 contrast checks, 11 axe scans PASS, TypeScript/build/domain/planning checks PASS. Live deployed desktop smoke checks passed independently; mobile and native screen reader acceptance remain outside independent live smoke.",
-  "release_status": "PUBLIC DEPLOYMENT CONFIRMED FOR REDESIGNED EXPERIENCE; FORMAL ORGANISER SUBMISSION NOT YET VERIFIED",
+  "release_status": "PUBLIC FRONTEND MVP DEPLOYED; SOURCE-ROOT AND DOCUMENTATION REMEDIATION READY FOR RE-EVALUATION; ORGANISER SCORE NOT VERIFIED",
   "source_files": {
     ".gitignore": "6c12cbe2357b4b2397df3e8e170aeebe414079a3538a322613ebb05b449c0086",
     "A_G2_INTEGRATION_RETURN.md": "c8cb2a05b97feddd194952d6304312c7c21c100d3c40229e325171a68b9f220e",
@@ -22,7 +22,7 @@
     "G1_RETURN_NOTE.md": "44f5a18eba5dfe35c389ee65ffdd22a1230c330e39b24b939ee05b68091fc699",
     "G1_SOURCE_SHA256.txt": "f9a59b77f9f25e90b8df074b9cbc2b999ec1ba703c492b9b1cd3394a2c933f97",
     "GRANTLY_X02_A_VISUAL_AUTHORIZATION.md": "829c04c24beecfeead57a8abec7c915f7f34087c5075ce3eadab52856297f951",
-    "README.md": "f5af7258ecb79c0c96502dc9ccbed4d1ae6a3f592c9a991e1875de8481b9919c",
+    "README.md": "15a182bca54d926e364df62da3597836ac7f832b7edb7e834aa116f67c2a32d5",
     "README_RELEASE_R3.md": "5a05d407c304102a70f24177eb05238e7d227d75f8e07bb415348b9d21466f2e",
     "README_VISUAL_r2.md": "6a1f7dd6525a518c055564db74e8532f5a6e360da79ebb92e005345c414bbee8",
     "VISUAL_ACCEPTANCE_CHECKLIST.md": "ec96e61941dde10d54f2b9f9ac6fbd8580e36f67156c50769cb6675d4e652701",
@@ -33,8 +33,8 @@
     "design_reference/desktop_specimen.html": "10e33e56c0292f90146f2a98e435753255a7c48d576e544b1ca8ca5158899b2c",
     "design_reference/mobile_specimen.html": "d5186e614c8a151116e734803524d1dcaf582b0510550e38db692a3aaf7d2922",
     "index.html": "24afc382b193d16200bb88ac5f5c37a043f09f4d25730c3b7d723e83b2977c7f",
-    "package-lock.json": "f4f013b81d553aed34add2671efb29e78fc096a230274fb4a7f63929c5ff1102",
-    "package.json": "8b75f845e045860865de8ca954d39c41c5f63e7eb51974b69191ee5a2daa682a",
+    "package-lock.json": "6d98e8d122a9450fd7612bd56c0ec5b5dd3002b86d513ff789a90ccbc57137b7",
+    "package.json": "8a779acb354fca7498ac7bda6324eec1a292edd4994983bc61c191b354691c0b",
     "preview.html": "dfbdfcfeb2cb19a1499f4bfbcb8cbc2e2e368547101b579c184ff7060424c85a",
     "scripts/g1-verify.mjs": "1d39cf1f7179f89d32542bdab8edcd018a1947f51a335abefd8d14ef11d3831f",
     "scripts/integration-check.mjs": "a6f448eaf28942e9210ff892a7fc360bd8847d9eccef48d7bf930717da044272",
@@ -65,7 +65,10 @@
     "src/styles/experience.css": "7c1aa3c5a804a90f1a817fa09bc022c5f358627034a56c369e837aa42d2a408d",
     "src/styles/global.css": "f31db553d752b5bc43f3f9c0b654755a3c5a063250a4f3a833d793c3461c0224",
     "tsconfig.json": "cf95658a4033b93b0884a1b3a9cb94132ba50bbfc3ded7a125d48de30ab630c8",
-    "vite.config.ts": "f740eccf673ead742708e9e3a7796ae6c5dd6f9bd7f4ba499d400b07616953c7"
+    "vite.config.ts": "f740eccf673ead742708e9e3a7796ae6c5dd6f9bd7f4ba499d400b07616953c7",
+    ".github/workflows/verify.yml": "7f96cd728dbca773c89adf798fc77dd8e3d0fa55747678063974228184814d45"
   },
-  "correction_commit": "a46c237569c8ed75f06bdd460e2a1b76854c9733"
+  "correction_commit": "a46c237569c8ed75f06bdd460e2a1b76854c9733",
+  "repository_root": ".",
+  "root_relocation": "Source-only tree relocated without modifying application JS/TS/CSS; previous r5 retained in grantly-r5-pre-evaluator-rootfix branch."
 }
